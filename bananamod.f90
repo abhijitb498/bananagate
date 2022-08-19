@@ -14,6 +14,8 @@ type, public :: banana
 
         procedure, pass, public :: readfile => readBananaFile
         generic, public :: gate => inside_gate, inside_gate_r
+
+        final :: destructor
 end type
 
 
@@ -105,6 +107,11 @@ if (jj) inside_gate_r = .true.
 return 
 end function 
 
+subroutine destructor(this)
+        type(banana) :: this
+        if (ALLOCATED(this % x)) deallocate(this % x)
+        if (ALLOCATED(this % y)) deallocate(this % y)
+end subroutine
 
 end module bananamod
 
@@ -125,5 +132,5 @@ end module bananamod
 !
 !call test%readfile('test.ban')
 !print*,test%gate(1800,1800)
-!
-!end program 
+
+end program 
