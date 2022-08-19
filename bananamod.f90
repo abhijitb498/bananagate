@@ -132,5 +132,4 @@ end module bananamod
 !
 !call test%readfile('test.ban')
 !print*,test%gate(1800,1800)
-
-end program 
+!end program 
